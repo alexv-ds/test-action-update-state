@@ -1,0 +1,12 @@
+name: deploy-action-update-state
+description: "Update service state on deploy gitops repo"
+inputs:
+  who:
+    default: world
+    description: "Say hello to who"
+    required: false
+runs:
+  using: docker
+  image: Dockerfile
+  args:
+  - "-who=${{ inputs.who }}"
