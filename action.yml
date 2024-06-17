@@ -1,12 +1,34 @@
 name: deploy-action-update-state
 description: "Update service state on deploy gitops repo"
 inputs:
-  who:
-    default: world
-    description: "Say hello to who"
+  repository:
+    description: "Gitops Repo (ssh url)"
+    required: true
+  ssh_key:
+    description: "SSH key"
+    required: true
+  tag:
+    description: "Docker image tag"
+    required: true
+  service:
+    description: "Service Name"
+    required: true
+  git_config_username:
+    default: "gitops-tag-updater"
+    description: "Username for git config"
+    required: false
+  git_config_email:
+    default: "no@reply.me"
+    description: "Email for git config"
     required: false
 runs:
   using: docker
   image: Dockerfile
   args:
-  - "-who=${{ inputs.who }}"
+    - --repository="${{ inputs.repository }}"
+    - --tag="${{ inputs.tag }}"
+    - --service="${{ inputs.service }}"
+    - --git-config-username="${{ inputs.git_config_username }}"
+    - --git-config-email="${{ inputs.git_config_email }}"
+  env:
+    ARG_SSH_KEY: "${{ inputs.ssh_key }}""
