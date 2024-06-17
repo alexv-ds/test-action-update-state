@@ -25,10 +25,10 @@ runs:
   using: docker
   image: Dockerfile
   args:
-    - --repository="${{ inputs.repository }}"
-    - --tag="${{ inputs.tag }}"
-    - --service="${{ inputs.service }}"
-    - --git-config-username="${{ inputs.git_config_username }}"
-    - --git-config-email="${{ inputs.git_config_email }}"
+    - "--repository=${{ inputs.repository }}"
+    - "--tag=${{ inputs.tag }}"
+    - "--service=${{ inputs.service }}"
+    - "--git-config-username=${{ inputs.git_config_username }}"
+    - "--git-config-email=${{ inputs.git_config_email }}"
   env:
-    ARG_SSH_KEY: "${{ inputs.ssh_key }}""
+    ARG_SSH_KEY: "${{ inputs.ssh_key }}"
